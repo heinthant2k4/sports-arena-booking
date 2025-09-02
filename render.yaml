@@ -1,12 +1,8 @@
 services:
   - type: web
     name: asiaTiger
-    env: java
     plan: free
     region: singapore
     rootDir: backend/arena-booking
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -jar target/*.jar
-    envVars:
-      - key: PORT
-        value: 8080
