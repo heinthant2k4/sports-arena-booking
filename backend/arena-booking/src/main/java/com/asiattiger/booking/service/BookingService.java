@@ -29,7 +29,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getAllBookings() {
-        log.info("📋 Fetching all bookings");
+        log.info("Fetching all bookings");
         List<Booking> bookings = bookingRepository.findAll();
         
         return bookings.stream()
@@ -39,7 +39,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getBookingsByUserId(String userId) {
-        log.info("👤 Fetching bookings for user: {}", userId);
+        log.info("Fetching bookings for user: {}", userId);
         List<Booking> bookings = bookingRepository.findByUserIdOrderByStartTimeDesc(userId);
         
         return bookings.stream()
@@ -48,8 +48,17 @@ public class BookingService {
     }
 
     @Transactional(readOnly = true)
+    public BookingDTO getBookingById(Long id) {
+        log.info("Fetching booking with ID: {}", id);
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
+        
+        return convertToDTO(booking);
+    }
+
+    @Transactional(readOnly = true)
     public List<BookingDTO> getUpcomingBookingsByUserId(String userId) {
-        log.info("⏰ Fetching upcoming bookings for user: {}", userId);
+        log.info("Fetching upcoming bookings for user: {}", userId);
         LocalDateTime now = LocalDateTime.now();
         List<Booking> bookings = bookingRepository.findUpcomingBookingsByUserId(userId, now);
         
@@ -60,7 +69,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getPastBookingsByUserId(String userId) {
-        log.info("📅 Fetching past bookings for user: {}", userId);
+        log.info("Fetching past bookings for user: {}", userId);
         LocalDateTime now = LocalDateTime.now();
         List<Booking> bookings = bookingRepository.findPastBookingsByUserId(userId, now);
         
@@ -70,17 +79,8 @@ public class BookingService {
     }
 
     @Transactional(readOnly = true)
-    public BookingDTO getBookingById(Long id) {
-        log.info("🔍 Fetching booking with ID: {}", id);
-        Booking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
-        
-        return convertToDTO(booking);
-    }
-
-    @Transactional(readOnly = true)
     public List<BookingDTO> getBookingsByFacility(Long facilityId) {
-        log.info("🏟️ Fetching bookings for facility ID: {}", facilityId);
+        log.info("Fetching bookings for facility ID: {}", facilityId);
         
         Facility facility = facilityRepository.findById(facilityId)
                 .orElseThrow(() -> new RuntimeException("Facility not found with ID: " + facilityId));
@@ -94,7 +94,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getBookingsByStatus(String status) {
-        log.info("📊 Fetching bookings with status: {}", status);
+        log.info("Fetching bookings with status: {}", status);
         List<Booking> bookings = bookingRepository.findByStatusOrderByStartTimeDesc(status);
         
         return bookings.stream()
@@ -104,7 +104,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getActiveBookings() {
-        log.info("🔥 Fetching active bookings");
+        log.info("Fetching active bookings");
         List<Booking> bookings = bookingRepository.findActiveBookings();
         
         return bookings.stream()
@@ -114,7 +114,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getBookingsInDateRange(LocalDateTime startDate, LocalDateTime endDate) {
-        log.info("📆 Fetching bookings between {} and {}", startDate, endDate);
+        log.info("Fetching bookings between {} and {}", startDate, endDate);
         List<Booking> bookings = bookingRepository.findBookingsInDateRange(startDate, endDate);
         
         return bookings.stream()
@@ -124,7 +124,7 @@ public class BookingService {
 
     @Transactional(readOnly = true)
     public List<BookingDTO> getCancellableBookingsByUserId(String userId) {
-        log.info("❌ Fetching cancellable bookings for user: {}", userId);
+        log.info("Fetching cancellable bookings for user: {}", userId);
         LocalDateTime cutoffTime = LocalDateTime.now().plusHours(2); // 2-hour cancellation policy
         List<Booking> bookings = bookingRepository.findCancellableBookingsByUserId(userId, cutoffTime);
         
@@ -136,7 +136,7 @@ public class BookingService {
     // ==================== BOOKING OPERATIONS ====================
 
     public BookingDTO createBooking(BookingDTO bookingDTO) {
-        log.info("➕ Creating new booking for user: {} at facility: {}", 
+        log.info("Creating new booking for user: {} at facility: {}", 
                 bookingDTO.getUserId(), bookingDTO.getFacilityId());
         
         // Validate and get facility
@@ -151,7 +151,7 @@ public class BookingService {
         // Validate booking times
         validateBookingTimes(bookingDTO.getStartTime(), bookingDTO.getEndTime());
         
-        // Check for conflicting bookings
+        // Check for conflicting bookings (simplified check)
         List<Booking> conflictingBookings = bookingRepository.findConflictingBookings(
                 facility, bookingDTO.getStartTime(), bookingDTO.getEndTime());
         
@@ -169,13 +169,13 @@ public class BookingService {
         booking.setTotalCost(facility.getHourlyRate().multiply(BigDecimal.valueOf(hours)));
         
         Booking savedBooking = bookingRepository.save(booking);
-        log.info("✅ Successfully created booking with ID: {}", savedBooking.getId());
+        log.info("Successfully created booking with ID: {}", savedBooking.getId());
         
         return convertToDTO(savedBooking);
     }
 
     public BookingDTO updateBooking(Long id, BookingDTO bookingDTO) {
-        log.info("✏️ Updating booking with ID: {}", id);
+        log.info("Updating booking with ID: {}", id);
         
         Booking existingBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
@@ -185,39 +185,17 @@ public class BookingService {
             throw new RuntimeException("Can only update pending bookings. Current status: " + existingBooking.getStatus());
         }
         
-        // Validate new booking times
-        if (bookingDTO.getStartTime() != null && bookingDTO.getEndTime() != null) {
-            validateBookingTimes(bookingDTO.getStartTime(), bookingDTO.getEndTime());
-            
-            // Check for conflicts (excluding current booking)
-            List<Booking> conflictingBookings = bookingRepository.findConflictingBookingsExcluding(
-                    existingBooking.getFacility(), 
-                    bookingDTO.getStartTime(), 
-                    bookingDTO.getEndTime(), 
-                    id);
-            
-            if (!conflictingBookings.isEmpty()) {
-                throw new RuntimeException("New time slot conflicts with existing booking. Please choose different time.");
-            }
-        }
-        
         // Update booking fields
         updateBookingFromDTO(existingBooking, bookingDTO);
         
-        // Recalculate total cost if times changed
-        if (bookingDTO.getStartTime() != null && bookingDTO.getEndTime() != null) {
-            double hours = Duration.between(existingBooking.getStartTime(), existingBooking.getEndTime()).toMinutes() / 60.0;
-            existingBooking.setTotalCost(existingBooking.getFacility().getHourlyRate().multiply(BigDecimal.valueOf(hours)));
-        }
-        
         Booking updatedBooking = bookingRepository.save(existingBooking);
-        log.info("✅ Successfully updated booking with ID: {}", updatedBooking.getId());
+        log.info("Successfully updated booking with ID: {}", updatedBooking.getId());
         
         return convertToDTO(updatedBooking);
     }
 
     public BookingDTO confirmBooking(Long id) {
-        log.info("✅ Confirming booking with ID: {}", id);
+        log.info("Confirming booking with ID: {}", id);
         
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
@@ -229,12 +207,12 @@ public class BookingService {
         booking.setStatus("confirmed");
         Booking confirmedBooking = bookingRepository.save(booking);
         
-        log.info("✅ Successfully confirmed booking with ID: {}", confirmedBooking.getId());
+        log.info("Successfully confirmed booking with ID: {}", confirmedBooking.getId());
         return convertToDTO(confirmedBooking);
     }
 
     public BookingDTO cancelBooking(Long id) {
-        log.info("❌ Cancelling booking with ID: {}", id);
+        log.info("Cancelling booking with ID: {}", id);
         
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
@@ -246,12 +224,12 @@ public class BookingService {
         booking.setStatus("cancelled");
         Booking cancelledBooking = bookingRepository.save(booking);
         
-        log.info("✅ Successfully cancelled booking with ID: {}", cancelledBooking.getId());
+        log.info("Successfully cancelled booking with ID: {}", cancelledBooking.getId());
         return convertToDTO(cancelledBooking);
     }
 
     public BookingDTO completeBooking(Long id) {
-        log.info("🏁 Completing booking with ID: {}", id);
+        log.info("Completing booking with ID: {}", id);
         
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
@@ -268,7 +246,7 @@ public class BookingService {
         booking.setStatus("completed");
         Booking completedBooking = bookingRepository.save(booking);
         
-        log.info("✅ Successfully completed booking with ID: {}", completedBooking.getId());
+        log.info("Successfully completed booking with ID: {}", completedBooking.getId());
         return convertToDTO(completedBooking);
     }
 
@@ -323,39 +301,6 @@ public class BookingService {
         }
         
         return conflictingBookings.isEmpty();
-    }
-
-    // ==================== STATISTICS & REPORTS ====================
-
-    @Transactional(readOnly = true)
-    public Long getTotalBookings() {
-        return (long) bookingRepository.findAll().size();
-    }
-
-    @Transactional(readOnly = true)
-    public Long getConfirmedBookingsCount() {
-        return bookingRepository.countConfirmedBookings();
-    }
-
-    @Transactional(readOnly = true)
-    public Long getPendingBookingsCount() {
-        return bookingRepository.countPendingBookings();
-    }
-
-    @Transactional(readOnly = true)
-    public Long getCancelledBookingsCount() {
-        return bookingRepository.countCancelledBookings();
-    }
-
-    @Transactional(readOnly = true)
-    public BigDecimal getTotalRevenue(LocalDateTime startDate, LocalDateTime endDate) {
-        BigDecimal revenue = bookingRepository.getTotalRevenueInDateRange(startDate, endDate);
-        return revenue != null ? revenue : BigDecimal.ZERO;
-    }
-
-    @Transactional(readOnly = true)
-    public Long getBookingsCountInDateRange(LocalDateTime startDate, LocalDateTime endDate) {
-        return bookingRepository.countBookingsInDateRange(startDate, endDate);
     }
 
     // ==================== CONVERSION METHODS ====================
