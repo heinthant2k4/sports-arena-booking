@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"></stop>
+      <stop offset="50%" stop-color="#dc2626"></stop>
+      <stop offset="100%" stop-color="#f59e0b"></stop>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="30" fill="url(#faviconGradient)"></circle>
+
+  <!-- Bold Tiger Character -->
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-family="serif" font-weight="900" font-size="28" fill="white">
+    虎
+  </text>
+</svg>
