@@ -47,7 +47,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks', 'Rackets (rental available)'],
     isActive: true,
     description: 'Professional badminton court with wooden flooring and proper ventilation.',
-    imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500'
+    imageUrl: 'https://live.staticflickr.com/65535/54128674502_45c95315c9_o.jpg'
   },
   {
     name: 'Badminton Court 2',
@@ -57,7 +57,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks'],
     isActive: true,
     description: 'Standard badminton court perfect for doubles matches and training.',
-    imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500'
+    imageUrl: 'https://bk.asia-city.com/sites/default/files/styles/og_fb/public/bad1.jpg?itok=tDbUEkgr'
   },
   {
     name: 'Badminton Court 3',
@@ -67,7 +67,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks'],
     isActive: true,
     description: 'Budget-friendly badminton court for casual play and practice sessions.',
-    imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500'
+    imageUrl: 'https://www.agcled.com/static/blogimg/202210/badminton-indoor-court.jpg'
   }
 ];
 
