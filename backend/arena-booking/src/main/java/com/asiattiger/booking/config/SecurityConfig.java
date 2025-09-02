@@ -1,4 +1,4 @@
-package com.university.arena_booking.config;
+package com.asiattiger.booking.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,9 +18,8 @@ public class SecurityConfig {
                 .ignoringRequestMatchers("/h2-console/**")
             )
             .headers((headers) -> headers
-                .frameOptions().sameOrigin()
-            )
-            .formLogin().disable();
+                .frameOptions(frameOptions -> frameOptions.sameOrigin())
+            );
         return http.build();
     }
 }
