@@ -1,8 +1,9 @@
 services:
   - type: web
     name: asiaTiger
+    env: docker
     plan: free
     region: singapore
     rootDir: backend/arena-booking
+    dockerfilePath: Dockerfile
     buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/*.jar
