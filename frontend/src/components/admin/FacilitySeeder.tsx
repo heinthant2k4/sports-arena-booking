@@ -31,7 +31,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     isActive: true,
     description:
       'Premium indoor futsal court with artificial turf and pro lighting. Perfect for 5v5 matches.',
-    imageUrl: 'https://source.unsplash.com/800x600/?futsal,court,indoor',
+    imageUrl: 'https://media.istockphoto.com/id/1149063259/photo/indoor-soccer-sports-hall.jpg?s=612x612&w=0&k=20&c=19WYnAJCnfuxRxLpzLtHDXKVbUpYj3H_uj-IMBE4qiM=',
   },
   {
     name: 'Futsal Court B',
@@ -41,7 +41,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Goals', 'Balls', 'Bibs'],
     isActive: true,
     description: 'Standard futsal court suitable for training and casual games.',
-    imageUrl: 'https://source.unsplash.com/800x600/?futsal,stadium',
+    imageUrl: 'https://sendaathletics.com/cdn/shop/files/about-futsal-1.jpg?v=1700177345&width=1500',
   },
   {
     name: 'Badminton Court 1',
@@ -51,7 +51,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks', 'Rackets (rental available)'],
     isActive: true,
     description: 'Professional badminton court with wooden flooring and ventilation.',
-    imageUrl: 'https://source.unsplash.com/800x600/?badminton,court,indoor',
+    imageUrl: 'https://gameonfamily.com/cdn/shop/articles/Depositphotos_9388060_original.jpg?v=1739840875&width=1100',
   },
   {
     name: 'Badminton Court 2',
@@ -61,7 +61,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks'],
     isActive: true,
     description: 'Standard badminton court perfect for doubles and training.',
-    imageUrl: 'https://source.unsplash.com/800x600/?badminton,shuttlecock',
+    imageUrl: 'https://badmintonhq.co.uk/cdn/shop/articles/123.jpg?v=1704207657',
   },
   {
     name: 'Badminton Court 3',
@@ -71,7 +71,7 @@ const sampleFacilities: Omit<Facility, 'id'>[] = [
     equipment: ['Nets', 'Shuttlecocks'],
     isActive: true,
     description: 'Budget-friendly badminton court for casual play and practice.',
-    imageUrl: 'https://source.unsplash.com/800x600/?badminton,sports-hall',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBIniHEH_Gf5hr_f6svcRw35KzF062PSDyxTIAthLZrfmLpV-DIArGH8dRXiB7RWbovl0&usqp=CAU',
   },
 ];
 
