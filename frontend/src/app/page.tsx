@@ -65,7 +65,7 @@ export default function Home() {
             <div className="absolute inset-0 border-4 border-orange-400/40 rounded-2xl animate-ping"></div>
           </div>
           <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-red-300 mb-2">
-            Loading Asian Tiger
+            Loading Sports Arena Booking System
           </h3>
           <p className="text-orange-200 text-lg">Preparing your elite experience...</p>
         </div>
@@ -87,15 +87,14 @@ export default function Home() {
               <div className="w-full h-full bg-gradient-to-br from-orange-500 via-red-600 to-amber-500 rounded-3xl flex items-center justify-center shadow-2xl">
                 <div className="text-center space-y-1">
                   <div className="text-5xl font-black text-white">虎</div>
-                  <div className="text-xs font-bold text-orange-100 tracking-widest">TIGER</div>
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-conic from-orange-400 via-red-400 to-amber-400 rounded-3xl opacity-40 blur-xl animate-spin" style={{animationDuration: '12s'}}></div>
             </div>
             
             <h1 className="text-6xl font-black tracking-tight leading-none mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-200 to-red-200">Asian</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300">Tiger</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-200 to-red-200">Sports Arena Booking</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-300">System</span>
             </h1>
             
             <div className="flex items-center justify-center space-x-4 mb-4">
@@ -133,8 +132,8 @@ export default function Home() {
                 </div>
               <div>
                 <h1 className="text-2xl font-black">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Asian</span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600 ml-1">Tiger</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Sports Arena Booking</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600 ml-1">System</span>
                 </h1>
                 <p className="text-xs font-bold text-slate-700 tracking-widest -mt-1">ELITE SPORTS HUB</p>
               </div>

@@ -323,7 +323,7 @@ function BookingModal({ facility, isOpen, onClose, onBookingSuccess }: BookingMo
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">${calculateTotalCost()}</div>
+                        <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">MMK {calculateTotalCost()}</div>
                         <div className="text-xs text-gray-700">Rate: {facility.hourlyRate}/hr</div>
                       </div>
                     </div>
@@ -384,7 +384,7 @@ function BookingModal({ facility, isOpen, onClose, onBookingSuccess }: BookingMo
                       </div>
                       <div>
                         <h4 className="text-sm text-gray-700 font-medium">Total</h4>
-                        <p className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">🐅 ${calculateTotalCost()}</p>
+                        <p className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">🐅 MMK {calculateTotalCost()}</p>
                       </div>
                     </div>
                   </div>
@@ -395,7 +395,7 @@ function BookingModal({ facility, isOpen, onClose, onBookingSuccess }: BookingMo
                       disabled={loading}
                       className="flex-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-4 px-8 rounded-2xl font-bold hover:opacity-90 disabled:opacity-50"
                     >
-                      {loading ? 'Confirming...' : `Confirm Booking - $${calculateTotalCost()}`}
+                      {loading ? 'Confirming...' : `Confirm Booking - MMK ${calculateTotalCost()}`}
                     </button>
                   </div>
                 </div>

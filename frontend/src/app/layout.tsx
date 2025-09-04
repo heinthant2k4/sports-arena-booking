@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Sports Arena Booking System",
   description: "University sports facility booking system",
-  applicationName: "Asian Tiger Arena",
+  applicationName: "Sports Arena Booking System",
   keywords: ["sports", "booking", "university", "facilities", "futsal", "badminton", "arena"],
   robots: { index: true, follow: true },
   openGraph: {
@@ -122,7 +122,7 @@ export default function RootLayout({
                         </div>
                       <div>
                         <p className="text-sm font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600">
-                          ASIAN TIGER ARENA
+                          Sports Arena Booking System
                         </p>
                         <p className="text-xs text-slate-500">
                           Elite Sports Facility Booking
@@ -143,14 +143,14 @@ export default function RootLayout({
                         href="mailto:info@asiantigerarena.com"
                         className="underline underline-offset-4 decoration-orange-300 hover:text-orange-700"
                       >
-                        info@asiantigerarena.com
+                        info@asiatiger.vercel.app
                       </a>{" "}
                       |{" "}
                       <a
                         href="tel:+959123456789"
                         className="underline underline-offset-4 decoration-orange-300 hover:text-orange-700"
                       >
-                        +95 9 123 456 789
+                        +959123456789
                       </a>
                     </div>
                   </div>
@@ -161,7 +161,7 @@ export default function RootLayout({
                   {/* Bottom row */}
                   <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
                     <p>
-                      © {year} Asian Tiger Arena. All rights reserved.
+                      © {year} Sports Arena Booking System. All rights reserved.
                     </p>
                     <div className="flex items-center gap-4">
                       <a href="#" className="hover:text-slate-700">

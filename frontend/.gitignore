@@ -36,6 +36,7 @@ serviceAccountKey.json
 
 # vercel
 .vercel
+NEXT_PUBLIC_API_URL=https://asiatiger-38xw.onrender.com/
 
 # typescript
 *.tsbuildinfo

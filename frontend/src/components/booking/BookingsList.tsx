@@ -502,7 +502,7 @@ export default function BookingsList() {
                         <div>
                           <p className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">Total</p>
                           <p className="text-lg font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">
-                            ${booking.totalCost ?? 0}
+                            MMK {booking.totalCost ?? 0}
                           </p>
                         </div>
                       </div>
